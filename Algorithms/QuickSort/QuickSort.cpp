@@ -19,6 +19,7 @@ int partitionArr(int arr[], int left, int right, int pivot) {
         }
 
     }
+    return left;
 }
 void quickSortLR(int arr[], int left, int right) {
     if(left>=right) {
