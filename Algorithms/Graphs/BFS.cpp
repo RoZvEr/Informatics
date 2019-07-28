@@ -1,39 +1,56 @@
 #include <iostream>
 #include <vector>
+#include <deque>
 
 using namespace std;
 
+
 int main()
 {
-    int maxn = 1005;
-    vector<int> adj[maxn];
+    int n, k, temp, startingVertex;
+    cout<<"Enter number of nodes"<<endl;
+    cin>>n;
+    int flag = false;
+    vector<int> numNodes[n];
+    deque<int> frontier;
 
-    int n = 12;
-    int s = 0;
-
-    bool used[maxn];
-    for(int i=0; i < maxn; i++) {
+    for(int i=0; i<n; i++) {
+        cout<<"How many neighbours for node "<<i<<"?"<<endl;
+        cin>>k;
+        cout<<"Enter neighbours"<<endl;
+        for(int j=0; j<k; j++) {
+            cin>>temp;
+            numNodes[i].push_back(temp);
+        }
+    }
+    cout<<"Enter starting point"<<endl;
+    bool used[n];
+    for(int i=0; i<n; i++) {
         used[i] = false;
     }
 
-    int frontier[maxn];
-    int frontierEnd=0;
+    cin>>startingVertex;
+    cout<<"Starting BFS from vertex "<<startingVertex<<"..."<<endl;
+    cout<<startingVertex<<endl;
+    used[startingVertex] = true;
 
-    frontier[frontierEnd] = s;
-    frontierEnd++;
-    used[s] = true;
-
-    for(int i=0; i < frontierEnd; i++) {
-        int currentVert = frontier[i];
-        for(int j = 0; j < adj[currentVert].size(); j++) {
-            int neighbor = adj[currentVert][j];
-            if(!used[neighbor]) {
-                frontier[frontierEnd] = neighbor;
-                frontierEnd++;
-                used[neighbor] = true;
+    frontier.push_back(startingVertex);
+    while(!frontier.empty()) {
+        for(i:numNodes[frontier.front()]) {
+            if(!used[i]) {
+                frontier.push_back(i);
+                cout<<i<<" ";
+                used[i] = true;
+                flag = true;
             }
         }
+        if(flag) {
+            cout<<endl;
+        }
+        flag = false;
+        frontier.pop_front();
     }
+
 
     return 0;
 }
