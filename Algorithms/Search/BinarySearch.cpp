@@ -8,7 +8,7 @@ bool binSearch(int arr[], int n, int x) {
     int right = n-1;
 
     while(left<=right) {
-        int mid = left+(right-left)/2;
+        int mid = left+(right-left)>>1;
 
         if(arr[mid]==x) {
             return true;
@@ -30,7 +30,7 @@ bool binSearchRecursive(int arr[], int n, int x, int left, int right) {
         return false;
     }
 
-    int mid = left+(right-left)/2;
+    int mid = left+(right-left)>>1;
 
     if(arr[mid]==x) {
             return true;
