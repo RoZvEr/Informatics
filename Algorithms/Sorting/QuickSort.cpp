@@ -25,7 +25,7 @@ void quickSortLR(int arr[], int left, int right) {
     if(left>=right) {
         return;
     }
-    int pivot = arr[(left+right)/2];
+    int pivot = arr[left+((right-left)>>1)];
     int index = partitionArr(arr, left, right, pivot);
     quickSortLR(arr, left, index-1);
     quickSortLR(arr, index, right);
